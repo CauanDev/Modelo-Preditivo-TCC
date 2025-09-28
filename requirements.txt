@@ -1,0 +1,7 @@
+psycopg2-binary
+pandas
+SQLAlchemy
+scikit-learn
+scipy
+tensorboardX
+joblib
