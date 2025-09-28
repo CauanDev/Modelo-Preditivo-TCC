@@ -91,34 +91,34 @@ Para garantir isolamento das dependências, recomenda-se utilizar um ambiente vi
 
 ### Criar ambiente virtual
 
-\`\`\`bash
+```bash
 python -m venv venv
-\`\`\`
+```
 
 ### Ativar o ambiente virtual
 
 **No Linux/macOS:**  
-\`\`\`bash
+```bash
 source venv/bin/activate
-\`\`\`
+```
 
 **No Windows:**  
-\`\`\`bash
+```bash
 venv\Scripts\activate
-\`\`\`
+```
 
 ### Instalar dependências
 
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
 
 ## Passo 2: Configurar o banco de dados
 
 O script principal para importação da base é o \`importar_base.py\`. Antes de rodá-lo, configure a conexão com o banco PostgreSQL:
 
-\`\`\`python
+```python
 import os
 import psycopg2
 
@@ -131,7 +131,7 @@ conexao = psycopg2.connect(
 )
 
 cursor = conexao.cursor()
-\`\`\`
+```
 
 
 ## Passo 3: Inserir os arquivos CSV
@@ -142,9 +142,9 @@ Coloque todos os arquivos CSV utilizados (de 1980 a 2024) na pasta:
 
 No script, defina o caminho onde os arquivos estão localizados:
 
-\`\`\`python
+```python
 caminho_base = os.path.join(os.path.dirname(__file__), '..', 'arquivos')
-\`\`\`
+```
 
 ## Observações
 
@@ -159,9 +159,9 @@ Antes de executar o script, certifique-se de que todas as tabelas do banco de da
 
 Com o ambiente virtual ativado e as dependências instaladas, execute:
 
-\`\`\`bash
+```bash
 python importar_base.py
-\`\`\`
+```
 
 O script irá importar os dados dos arquivos CSV para as tabelas correspondentes no banco PostgreSQL.
 >>>
@@ -176,9 +176,9 @@ Antes de executar o script, certifique-se de que todas as tabelas do banco de da
 
 Com o ambiente virtual ativado e as dependências instaladas, execute:
 
-\`\`\`bash
+```bash
 python treinar_modelo.py
-\`\`\`
+```
 
 O script irá treinar um modelo de Random Forest utilizando os dados do banco PostgreSQL e salvará o modelo, o scaler e as colunas utilizadas nos arquivos correspondentes.
 
@@ -195,9 +195,9 @@ Antes de executar o script, certifique-se de que:
 
 Com o ambiente virtual ativado e as dependências instaladas, execute:
 
-\`\`\`bash
+```bash
 python analisar_casos.py
-\`\`\`
+```
 
 O script irá:
 
@@ -215,17 +215,17 @@ Para visualizar os gráficos do projeto, você precisará de algumas ferramentas
 
 1. **TensorBoard** – para acompanhar métricas do treinamento do modelo.  
    - Pode ser instalado via pip:  
-   \`\`\`bash
+   ```bash
    pip install tensorboard
-   \`\`\`
+   ```
 
 2. **Node.js e npm** – para executar a aplicação React que utiliza ApexCharts.  
    - Baixe e instale a partir do site oficial: [https://nodejs.org/](https://nodejs.org/)  
    - Após a instalação, verifique com:  
-   \`\`\`bash
+   ```bash
    node -v
    npm -v
-   \`\`\`
+   ```
 
 
 O projeto gera gráficos de duas formas principais:
@@ -237,23 +237,23 @@ O projeto gera gráficos de duas formas principais:
 
 O TensorBoard salva os logs na pasta:
 
-\`\`\`
+```
 logs/random_forest
-\`\`\`
+```
 
 ### Executar TensorBoard
 
 No ambiente virtual ativado, execute:
 
-\`\`\`bash
+```bash
 tensorboard --logdir logs/random_forest --port 6006
-\`\`\`
+```
 
 Em seguida, abra o navegador e acesse:
 
-\`\`\`
+```
 http://localhost:6006
-\`\`\`
+```
 
 Lá você poderá visualizar métricas como ROC AUC, parâmetros testados e evolução do treinamento.
 
@@ -261,9 +261,9 @@ Lá você poderá visualizar métricas como ROC AUC, parâmetros testados e evol
 
 Os gráficos interativos da aplicação web estão localizados na pasta:
 
-\`\`\`
+```
 graficos/
-\`\`\`
+```
 
 Eles utilizam **React** e **ApexCharts** para renderização.
 
@@ -271,20 +271,20 @@ Eles utilizam **React** e **ApexCharts** para renderização.
 
 1. Instale as dependências (a partir da pasta \`graficos/\`):
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 2. Execute o servidor de desenvolvimento:
 
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 A aplicação será iniciada geralmente em:
 
-\`\`\`
+```
 http://localhost:3000
-\`\`\`
+```
 
 Os gráficos mostrarão as métricas e análises já calculadas pelo backend, de forma interativa e dinâmica.
