@@ -164,13 +164,22 @@ python importar_base.py
 ```
 
 O script irá importar os dados dos arquivos CSV para as tabelas correspondentes no banco PostgreSQL.
->>>
 
 # Procedimento de Treinamento do Modelo Preditivo
 
 O script responsável pelo treinamento do modelo preditivo é o \`treinar_modelo.py\`.
 
-Antes de executar o script, certifique-se de que todas as tabelas do banco de dados foram criadas e populadas conforme os passos anteriores (tabelas \`obitos_infantil\` e \`sobreviventes\`).
+Antes de rodá-lo, configure a conexão com o banco PostgreSQL:
+
+```python
+engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost/db_tcc")
+```
+
+Observações importantes:
+
+- Certifique-se de substituir os parâmetros da conexão (`user`, `password`, `host`, `port` e `database`) de acordo com o seu ambiente.
+- Antes de executar o script, verifique se todas as tabelas necessárias foram criadas e populadas conforme os passos anteriores, principalmente `obitos_infantil` e `sobreviventes`.
+- Com a conexão configurada e as tabelas prontas, você poderá executar o treinamento do modelo com segurança.
 
 ## Executar o script
 
@@ -186,10 +195,17 @@ O script irá treinar um modelo de Random Forest utilizando os dados do banco Po
 
 O script responsável por analisar novos pacientes é o \`analisar_casos.py\`.
 
+Antes de rodá-lo, configure a conexão com o banco PostgreSQL:
+
+```python
+engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost/db_tcc")
+```
+
 Antes de executar o script, certifique-se de que:
 
-1. O modelo preditivo já foi treinado e os arquivos \`random_forest_model.pkl\`, \`scaler.pkl\` e \`model_columns.pkl\` foram gerados.
-2. A tabela \`novos_pacientes\` no banco de dados PostgreSQL está populada com os registros a serem analisados.
+- O modelo preditivo já foi treinado e os arquivos \`random_forest_model.pkl\`, \`scaler.pkl\` e \`model_columns.pkl\` foram gerados.
+- Certifique-se de substituir os parâmetros da conexão (`user`, `password`, `host`, `port` e `database`) de acordo com o seu ambiente.
+- A tabela \`novos_pacientes\` no banco de dados PostgreSQL está populada com os registros a serem analisados.
 
 ## Executar o script
 

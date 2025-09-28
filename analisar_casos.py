@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 import joblib
 
 # ====== Configurações ======
-engine = create_engine("postgresql+psycopg2://postgres:postgres@192.168.100.18:5432/db_tcc")
+engine = create_engine("postgresql+psycopg2://postgres:postgres@localhost/db_tcc")
 
 model_file = "random_forest_model.pkl"
 scaler_file = "scaler.pkl"
